@@ -5,6 +5,8 @@
 
 #define ASSERT_TRUE(T) if (!(T)) return false;
 #define ASSERT_FALSE(T) if ((T)) return false;
+#include <iostream>
+using namespace std;
 
 class DronesManagerTest {
 public:
@@ -39,18 +41,20 @@ public:
 		
 		const int num_elems = 5;
 		for (unsigned int i = 0; i < num_elems; i++) {
-			ASSERT_TRUE(manager1.insert_back(DronesManager::DroneRecord(i*100)))
+			(manager1.insert_back(DronesManager::DroneRecord(i*100)))? cout << i << " true" << endl: cout << i << " false" << endl;
 		}
 
 		unsigned int idx = 3;
-		ASSERT_TRUE(manager1.search(manager1.select(idx)) == idx)
-		ASSERT_TRUE(manager1.select(num_elems + 1) == DronesManager::DroneRecord(400))
-		ASSERT_TRUE(manager1.search(1000) == manager1.get_size())
+		(manager1.search(manager1.select(idx)) == idx)? cout << "true" << endl: cout << "false" << endl;
+		(manager1.select(num_elems + 1) == DronesManager::DroneRecord(400))? cout << "true" << endl: cout << "false" << endl;
+		(manager1.search(1000) == manager1.get_size())? cout << "true" << endl: cout << "false" << endl;
 		
 		for (unsigned int i = 0; i < num_elems; i++) {
-			ASSERT_TRUE(manager1.select(i) == DronesManager::DroneRecord(i*100))
+			(manager1.select(i) == DronesManager::DroneRecord(i*100))? cout << i << " true" << endl: cout << i << " false" << endl;
 		}
-		ASSERT_TRUE(manager1.first->prev == NULL && manager1.last->next == NULL)
+		(manager1.first->prev == NULL && manager1.last->next == NULL)? cout << "true" << endl: cout << "false" << endl;
+		
+		cout << endl << endl;
 	    return true;
     }
     
