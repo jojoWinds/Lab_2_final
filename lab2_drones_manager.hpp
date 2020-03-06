@@ -187,7 +187,7 @@ unsigned int DronesManager::get_size() const {
 		DLL_size++;
 	}
 	
-	return DLL_size;
+	return DLL_size+1;
 }
 
 bool DronesManager::empty() const {

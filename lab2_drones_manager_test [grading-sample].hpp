@@ -48,6 +48,7 @@ public:
 		(manager1.search(manager1.select(idx)) == idx)? cout << "true" << endl: cout << "false" << endl;
 		(manager1.select(num_elems + 1) == DronesManager::DroneRecord(400))? cout << "true" << endl: cout << "false" << endl;
 		(manager1.search(1000) == manager1.get_size())? cout << "true" << endl: cout << "false" << endl;
+				
 		
 		for (unsigned int i = 0; i < num_elems; i++) {
 			(manager1.select(i) == DronesManager::DroneRecord(i*100))? cout << i << " true" << endl: cout << i << " false" << endl;
