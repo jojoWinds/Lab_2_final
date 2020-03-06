@@ -48,12 +48,14 @@ public:
 		(manager1.search(manager1.select(idx)) == idx)? cout << "true" << endl: cout << "false" << endl;
 		(manager1.select(num_elems + 1) == DronesManager::DroneRecord(400))? cout << "true" << endl: cout << "false" << endl;
 		(manager1.search(1000) == manager1.get_size())? cout << "true" << endl: cout << "false" << endl;
-				
+		
 		
 		for (unsigned int i = 0; i < num_elems; i++) {
 			(manager1.select(i) == DronesManager::DroneRecord(i*100))? cout << i << " true" << endl: cout << i << " false" << endl;
 		}
 		(manager1.first->prev == NULL && manager1.last->next == NULL)? cout << "true" << endl: cout << "false" << endl;
+		
+		manager1.print();
 		
 		cout << endl << endl;
 	    return true;
@@ -62,15 +64,15 @@ public:
     // PURPOSE: remove_front() and remove_back() on one-element list
     bool test4() {
 		DronesManager manager1, manager2;
-		ASSERT_TRUE(manager1.insert_front(DronesManager::DroneRecord(100)))
-		ASSERT_TRUE(manager2.insert_front(DronesManager::DroneRecord(100)))
-		ASSERT_TRUE(manager1.remove_front())
-		ASSERT_TRUE(manager2.remove_back())
+		(manager1.insert_front(DronesManager::DroneRecord(100)))? cout << "true" << endl: cout << "false" << endl;
+		(manager2.insert_front(DronesManager::DroneRecord(100)))? cout << "true" << endl: cout << "false" << endl;
+		(manager1.remove_front())? cout << "true" << endl: cout << "false" << endl;
+		(manager2.remove_back())? cout << "true" << endl: cout << "false" << endl;
 		
-		ASSERT_TRUE(manager1.first == NULL && manager1.last == NULL)
-		ASSERT_TRUE(manager2.first == NULL && manager2.last == NULL)
-		ASSERT_TRUE(manager1.get_size() == manager2.get_size() && manager1.get_size() == 0)
-		ASSERT_TRUE(manager1.empty() == true && manager2.empty() == true)
+		(manager1.first == NULL && manager1.last == NULL)? cout << "true" << endl: cout << "false" << endl;
+		(manager2.first == NULL && manager2.last == NULL)? cout << "true" << endl: cout << "false" << endl;
+		(manager1.get_size() == manager2.get_size() && manager1.get_size() == 0)? cout << "true" << endl: cout << "false" << endl;
+		(manager1.empty() == true && manager2.empty() == true)? cout << "true" << endl: cout << "false" << endl;
 		
 	    return true;
     }

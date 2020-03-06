@@ -458,8 +458,7 @@ bool DronesManager::remove(unsigned int index) {
 	//case 3: node at end of list
 	else if (index == size-1)
 	{
-		remove_back();
-		
+		remove_back();		
 		return true;
 	}
 	//case 4: node in btw 2 nodes
@@ -495,14 +494,18 @@ bool DronesManager::remove_front()
  	if(first == NULL)
  	{return false;}
  	
+ 	//2nd case: if only one node in list
  	else if(curr->next == NULL)
 	 {		
 		delete curr;
 		curr = NULL;
+		first = NULL;
+		last = NULL;
 		
 		size--;	
 		return true; 		
 	 }
+	 //case 3: if more than one node in list
 	 else
 	 {
 		first = curr->next;
@@ -533,7 +536,9 @@ bool DronesManager::remove_back() {
 	{
 		DroneRecord* curr = first;
 		delete curr;
-		curr = NULL;		
+		curr = NULL;
+		first = NULL;
+		last = NULL;		
 		size--;	
 		return true; 
 	}
