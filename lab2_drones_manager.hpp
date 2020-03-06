@@ -168,12 +168,12 @@ unsigned int DronesManager::get_size() const {
 	//case 1: list contains no node
 	if (first == NULL)
 	{
-		DLL_size = 0;
+		return 0;
 	}
 	//case 2: list contains 1 node
 	else if (first == last)
 	{
-		DLL_size = 1;
+		return 1;
 	}
 	//case 3: list contains more than 1 node
 	else
@@ -194,7 +194,7 @@ bool DronesManager::empty() const {
 	bool status = true;
 	
 	//first case: list is already empty
-	if(first == NULL){}
+	if(first == NULL){status = true;}
 	else{status = false;}
 	
 	return status; //***********************************************************chaged from 'false' to 'status'

@@ -73,7 +73,7 @@ public:
 		(manager2.first == NULL && manager2.last == NULL)? cout << "true" << endl: cout << "false" << endl;
 		(manager1.get_size() == manager2.get_size() && manager1.get_size() == 0)? cout << "true" << endl: cout << "false" << endl;
 		(manager1.empty() == true && manager2.empty() == true)? cout << "true" << endl: cout << "false" << endl;
-		
+				
 	    return true;
     }
     
