@@ -565,39 +565,66 @@ bool DronesManager::replace(unsigned int index, DroneRecord value) {
 	int position = 0;
 	
 	//1st case: empty list
-	if( index > this->get_size() )
+	if(first == NULL)
 	{
-//		cout << "Function didn't work and exited" << endl;
 		return false;
-	}	
+	}
+	//case 2: only one node in list
+	else if (first->next == NULL)
+	{
+		if (index == 0)
+		{
+			DroneRecord *current_node = first;
+			DroneRecord *temp = new DroneRecord(value);
+			
+			first = temp;
+			last = temp;
+			
+			delete current_node;
+			current_node = NULL;
+						
+			return true;
+		}
+		else
+			return false;
+	}
+	//case 3: if non-empty list and more than 1 node
 	else
 	{
+		//starting at begining of list (position or index = 0)
 		DroneRecord *current_node = first;
 		DroneRecord *before = NULL;
-		DroneRecord *after = NULL;
+		DroneRecord *after = first->next;
 		
-		for(int position = 0; position < index; position++)
+		if (index != 0) //if not wanting to replace with first element in list
 		{
-			current_node = current_node->next;
-			before = current_node->prev;
-			after = current_node->next;
+			for(int position = 1; position <= index; position++)
+			{
+				current_node = current_node->next;
+				before = current_node->prev;
+				after = current_node->next;
+			}			
 		}
 		
 		DroneRecord* temp = new DroneRecord(value);
-		before->next = temp;
-		after->prev = temp;
+		if (index != 0) //not first node
+			before->next = temp;
+		else //yes at first node
+			first = temp;
+		
+		if (after->next != NULL) //not at last node
+			after->prev = temp;
+		else //yest at last node
+			last = temp;
+		
 		temp->prev = before;
 		temp->next = after;
 		
 		delete current_node;	
 		current_node = NULL;		
 				
-//		cout << "Function is working and we are here" << endl;
 		return true;
 	}
-	
-	//case 4: node in btw 2 nodes
-
 	
 	return false;
 }

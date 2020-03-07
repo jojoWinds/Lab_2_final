@@ -82,24 +82,33 @@ public:
     	DronesManager manager;
 		const int num_elems = 8;
 		for (unsigned int i = 0; i < num_elems; i++) {
-			ASSERT_TRUE(manager.insert_back(DronesManager::DroneRecord(i)))
+			(manager.insert_back(DronesManager::DroneRecord(i)))? cout << "true" << endl: cout << "false" << endl;
 		}
+		
+		manager.print();
+		cout << endl << endl;
+		
+		(manager.replace(0, DronesManager::DroneRecord(8)))? cout << "true" << endl: cout << "false" << endl;
+		manager.print();
+		cout << endl << endl;
+		(manager.replace(3, DronesManager::DroneRecord(9)))? cout << "true" << endl: cout << "false" << endl;
+		manager.print();
+		cout << endl << endl;
+		(manager.replace(7, DronesManager::DroneRecord(10)))? cout << "true" << endl: cout << "false" << endl;
+		manager.print();
+		cout << endl << endl;
 	
-		ASSERT_TRUE(manager.replace(0, DronesManager::DroneRecord(8)))
-		ASSERT_TRUE(manager.replace(3, DronesManager::DroneRecord(9)))
-		ASSERT_TRUE(manager.replace(7, DronesManager::DroneRecord(10)))
-	
-		ASSERT_TRUE(*manager.first == DronesManager::DroneRecord(8))
-		ASSERT_TRUE(*manager.last == DronesManager::DroneRecord(10))
-		ASSERT_TRUE(*(manager.first->next->next->next) == DronesManager::DroneRecord(9))
+		(*manager.first == DronesManager::DroneRecord(8))? cout << "true" << endl: cout << "false" << endl;
+		(*manager.last == DronesManager::DroneRecord(10))? cout << "true" << endl: cout << "false" << endl;
+		(*(manager.first->next->next->next) == DronesManager::DroneRecord(9))? cout << "true" << endl: cout << "false" << endl;
 	
 		int test_values[8] = {10, 6, 5, 4, 9, 2, 1, 8};
-		ASSERT_TRUE(manager.reverse_list());
+		(manager.reverse_list())? cout << "true" << endl: cout << "false" << endl;
 		for (unsigned int i = 0; i < num_elems; i++) {
-			ASSERT_TRUE(manager.select(i) == DronesManager::DroneRecord(test_values[i]))
+			(manager.select(i) == DronesManager::DroneRecord(test_values[i]))? cout << "true" << endl: cout << "false" << endl;
 		}
 	
-		ASSERT_TRUE(manager.first->prev == NULL && manager.last->next == NULL)
+		(manager.first->prev == NULL && manager.last->next == NULL)? cout << "true" << endl: cout << "false" << endl;
 		
 	    return true;
     }
