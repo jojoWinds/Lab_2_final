@@ -598,7 +598,7 @@ bool DronesManager::replace(unsigned int index, DroneRecord value) {
 		
 		if (index != 0) //if not wanting to replace with first element in list
 		{
-			for(int position = 1; position <= index; position++)
+			for(int position = 1; position <= index-1; position++)
 			{
 				current_node = current_node->next;
 				before = current_node->prev;
