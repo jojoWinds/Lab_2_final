@@ -595,35 +595,58 @@ bool DronesManager::replace(unsigned int index, DroneRecord value) {
 		DroneRecord *current_node = first;
 		DroneRecord *before = NULL;
 		DroneRecord *after = first->next;
+		DroneRecord* temp = new DroneRecord(value);
 		
-		if (index != 0) //if not wanting to replace with first element in list
+		if (index > (this->get_size()-1) && index < 0)
+			return false;
+		
+		else if (index == 0) //want to replace first element
+		{			
+			first = temp;
+			
+			temp->prev = before;
+			temp->next = after;
+			
+			delete current_node;	
+			current_node = NULL;		
+					
+			return true;
+		}
+		else if (index != 0) //if not wanting to replace with first element in list
 		{
-			for(int position = 1; position <= index-1; position++)
+			for(int position = 0; position <= index-1; position++)
 			{
 				current_node = current_node->next;
 				before = current_node->prev;
 				after = current_node->next;
-			}			
-		}
-		
-		DroneRecord* temp = new DroneRecord(value);
-		if (index != 0) //not first node
-			before->next = temp;
-		else //yes at first node
-			first = temp;
-		
-		if (after->next != NULL) //not at last node
-			after->prev = temp;
-		else //yest at last node
-			last = temp;
-		
-		temp->prev = before;
-		temp->next = after;
-		
-		delete current_node;	
-		current_node = NULL;		
+			}
+			
+			if (index == this->get_size()-1) //want to replace with last element in list
+			{			
+				last = temp;
 				
-		return true;
+				temp->prev = before;
+				temp->next = after;
+				
+				delete current_node;	
+				current_node = NULL;
+						
+				return true;
+			}
+			else
+			{
+				before->next = temp;
+				after->prev = temp;
+				
+				temp->prev = before;
+				temp->next = after;
+				
+				delete current_node;	
+				current_node = NULL;		
+						
+				return true;				
+			}
+		}		
 	}
 	
 	return false;

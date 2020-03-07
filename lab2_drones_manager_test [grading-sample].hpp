@@ -94,8 +94,10 @@ public:
 	
 		(*manager.first == DronesManager::DroneRecord(8))? cout << "true" << endl: cout << "false" << endl;
 		(*manager.last == DronesManager::DroneRecord(10))? cout << "true" << endl: cout << "false" << endl;
+		
 		manager.print();
 		cout << endl << endl;
+		
 		(*(manager.first->next->next->next) == DronesManager::DroneRecord(9))? cout << "true" << endl: cout << "false" << endl;
 	
 		int test_values[8] = {10, 6, 5, 4, 9, 2, 1, 8};
